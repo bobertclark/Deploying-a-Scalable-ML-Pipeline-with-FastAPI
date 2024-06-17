@@ -1,0 +1,22 @@
+name: Python and Flake8 Test
+
+on: push
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    - name: Run Pytest
+      run: |
+        pytest
+
+    - name: Lint with Flake8
+      run: |
+        flake8 .
