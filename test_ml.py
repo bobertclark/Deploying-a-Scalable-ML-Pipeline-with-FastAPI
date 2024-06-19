@@ -1,4 +1,3 @@
-import pytest
 # TODO: add necessary import
 import numpy as np
 import math
@@ -13,7 +12,8 @@ def test_dataset_size():
     """
 
     # Your code here
-    assert train_model.train.shape[0] == math.floor(train_model.data.shape[0]*0.8) and train_model.test.shape[0] == math.ceil(train_model.data.shape[0]*0.2)
+    assert (train_model.train.shape[0] == math.floor(train_model.data.shape[0]*0.8) and
+            train_model.test.shape[0] == math.ceil(train_model.data.shape[0]*0.2))
 
 
 # TODO: implement the second test. Change the function name and input as needed
@@ -22,7 +22,7 @@ def test_preds():
     Tests if the predictions output is the right type
     """
     # Your code here
-    assert type(train_model.preds) == type(np.array([]))
+    assert isinstance(train_model.preds, (np.ndarray))
 
 
 # TODO: implement the third test. Change the function name and input as needed
