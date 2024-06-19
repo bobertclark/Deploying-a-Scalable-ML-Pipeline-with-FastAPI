@@ -1,28 +1,34 @@
 import pytest
 # TODO: add necessary import
+import numpy as np
+import math
+# Runs train_model.py file
+import train_model
+
 
 # TODO: implement the first test. Change the function name and input as needed
-def test_one():
+def test_dataset_size():
     """
-    # add description for the first test
+    Tests if the training and test datasets have the expected size.
     """
+
     # Your code here
-    pass
+    assert train_model.train.shape[0] == math.floor(train_model.data.shape[0]*0.8) and train_model.test.shape[0] == math.ceil(train_model.data.shape[0]*0.2)
 
 
 # TODO: implement the second test. Change the function name and input as needed
-def test_two():
+def test_preds():
     """
-    # add description for the second test
+    Tests if the predictions output is the right type
     """
     # Your code here
-    pass
+    assert type(train_model.preds) == type(np.array([]))
 
 
 # TODO: implement the third test. Change the function name and input as needed
-def test_three():
+def test_computing_metrics():
     """
-    # add description for the third test
+    Tests if the computing metrics functions return the expected value.
     """
     # Your code here
-    pass
+    assert 0 <= train_model.p <= 1 and 0 <= train_model.r <= 1 and 0 <= train_model.fb <= 1
