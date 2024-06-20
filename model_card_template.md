@@ -3,7 +3,7 @@
 For additional information see the Model Card paper: https://arxiv.org/pdf/1810.03993.pdf
 
 ## Model Details
-Model type - KMeans Cluster
+Model type - RandomForestClassifier
 
 ## Intended Use
 Analysis on census data
@@ -15,7 +15,7 @@ Analysis on census data
 The other 20% random split from census data
 
 ## Metrics
-Precision: 0.8159 | Recall: 0.2432 | F1: 0.0952
+Precision: 0.7899 | Recall: 0.6192 | F1: 0.6942
 
 ## Ethical Considerations
 

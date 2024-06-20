@@ -2,8 +2,8 @@ import pickle
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from ml.data import process_data
 # TODO: add necessary import
-from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
 
 
 # Optional: implement hyperparameter tuning.
@@ -23,12 +23,18 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
     # TODO: implement the function
-    pca_data = PCA().fit_transform(X_train, y_train)
+    model = RandomForestClassifier()
 
-    kmeans = KMeans()
-    kmeans = kmeans.fit(pca_data)
+    # Optional: Perform hyperparameter tuning
+    param_grid = {
+        'n_estimators': [50, 100, 200],
+        'max_depth': [None, 10, 20, 30]
+    }
+    grid_search = GridSearchCV(model, param_grid, cv=5)
+    grid_search.fit(X_train, y_train)
 
-    return kmeans
+    # Return the best model found by GridSearchCV
+    return grid_search.best_estimator_
 
 
 def compute_model_metrics(y, preds):
@@ -47,9 +53,9 @@ def compute_model_metrics(y, preds):
     recall : float
     fbeta : float
     """
-    fbeta = fbeta_score(y, preds, beta=1, zero_division=1, average="weighted")
-    precision = precision_score(y, preds, zero_division=1, average="weighted")
-    recall = recall_score(y, preds, zero_division=1, average="weighted")
+    fbeta = fbeta_score(y, preds, beta=1, zero_division=1)
+    precision = precision_score(y, preds, zero_division=1)
+    recall = recall_score(y, preds, zero_division=1)
     return precision, recall, fbeta
 
 
